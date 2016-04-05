@@ -64,14 +64,29 @@ var bootstrapWizardCreate = function(element, options) {
 		// run JavaScript in each page.
 		if($index == 1) {
 			setupBanksDetails();
+			$('#tab2').attr("data-toggle", "tab");
+			$('#tab3').attr("data-toggle", "tab");
+			$('#tab4').attr("data-toggle", "");
+			$('#tab5').attr("data-toggle", "");
+			$('#tab6').attr("data-toggle", "");
 		}
 		else if($index == 2) {
 			getFailedBanks();
+			$('#tab2').attr("data-toggle", "tab");
+			$('#tab3').attr("data-toggle", "tab");
+			$('#tab4').attr("data-toggle", "");
+			$('#tab5').attr("data-toggle", "");
+			$('#tab6').attr("data-toggle", "");
 		}
 		else if($index == 3) {
 			getThresholds();
 			getExposures();
 			initiateProcessing();
+			$('#tab2').attr("data-toggle", "tab");
+			$('#tab3').attr("data-toggle", "tab");
+			$('#tab4').attr("data-toggle", "tab");
+			$('#tab5').attr("data-toggle", "");
+			$('#tab6').attr("data-toggle", "");
 		}
 
 		if($index > obj.navigationLength()) {

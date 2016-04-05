@@ -28,3 +28,17 @@ ol.linenums li {
   line-height: 20px;
   text-shadow: 0 1px 0 #fff;
 }
+#cover_drop_zone {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+.drop_zone {
+    border: 2px dashed #bbb;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding: 25px;
+    text-align: center;
+    font: 20pt bold 'Vollkorn';
+    color: #bbb;
+}

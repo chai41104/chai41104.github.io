@@ -86,12 +86,12 @@
                       <div class="navbar-inner">
                         <div class="container">
                           <ul>
-                            <li><a href="#tabInsertBanks" onclick="test();" data-toggle="tab">Insert Banks</a></li>
-                            <li><a href="#tabFailed" onclick="test();" data-toggle="tab">Insert Failed</a></li>
-                            <li><a href="#tabInsertETBanks" onclick="test();" data-toggle="tab">Insert Exposures & Thresholds of banks</a></li>
-                            <li><a href="#tabProcessing" onclick="test();" data-toggle="tab">Processing</a></li>
-                            <li><a href="#tabResult" onclick="test();" data-toggle="tab">Result</a></li>
-                            <li><a href="#tabSummarize" onclick="test();" data-toggle="tab">Summarize</a></li>
+                            <li><a id="tab1" href="#tabInsertBanks" onclick="test(1);" data-toggle="tab">Insert Banks</a></li>
+                            <li><a id="tab2" href="#tabFailed" onclick="test(2);" data-toggle="tab">Insert Failed</a></li>
+                            <li><a id="tab3" href="#tabInsertETBanks" onclick="test(3);" data-toggle="tab">Insert Exposures & Thresholds of banks</a></li>
+                            <li><a id="tab4" href="#tabProcessing" onclick="test(4);" data-toggle="tab">Processing</a></li>
+                            <li><a id="tab5" href="#tabResult" onclick="test(5);" data-toggle="tab">Result</a></li>
+                            <li><a id="tab6" href="#tabSummarize" onclick="test(6);" data-toggle="tab">Summarize</a></li>
                           </ul>
                         </div>
                       </div>
@@ -229,7 +229,7 @@
                               </a>
                             </div>
                             <div class="btn-group pull-right">
-                              <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#ExposuresJson" title="Upload Exposures via Json.">
+                              <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#ExposuresURL" title="Upload Exposures via URL.">
                                 <i class="fa fa-upload"></i>
                               </a>
                             </div>
@@ -239,8 +239,8 @@
                             </div>
                           </div>
                         </div>
-                        <!-- beginning of modle for Json -->
-                        <div class="modal fade" id="ExposuresJson" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <!-- beginning of modle for URL -->
+                        <div class="modal fade" id="ExposuresURL" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                           <div class="modal-dialog">
                               <div class="modal-content">
                                   <div class="modal-header">
@@ -256,6 +256,29 @@
                                   <div class="modal-footer">
                                       <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                                       <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="uploadExposuresURL();">Get</button>
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+                        <!-- beginning of modle for CSV File -->
+                        <div class="modal fade" id="ExposuresCSV" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                      <h4 class="modal-title" id="myModalLabel" style="color: black">Get Exposures via CSV file.</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                    <div class='input-group'>
+                                      <lable> Upload CSV file : </label><input type="file" id="fileExposures" name="files[]" />
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <div class='input-group'>
+                                      <div id="cover_drop_zone">
+                                        <div id="drop_Exposures" class="drop_zone">Or drop CSV file here</div>
+                                      </div>
+                                    </div>
                                   </div>
                               </div>
                           </div>
@@ -279,12 +302,12 @@
                               </a>
                             </div>
                             <div class="btn-group pull-right">
-                              <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#ThresholdsJson" title="Upload Thresholds via Json.">
+                              <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#ThresholdsURL" title="Upload Thresholds via URL.">
                                 <i class="fa fa-upload"></i>
                               </a>
                             </div>
-                            <!-- beginning of modle for Json -->
-                            <div class="modal fade" id="ThresholdsJson" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <!-- beginning of modle for URL -->
+                            <div class="modal fade" id="ThresholdsURL" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                               <div class="modal-dialog">
                                   <div class="modal-content">
                                       <div class="modal-header">
@@ -301,6 +324,29 @@
                                           <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                                           <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="uploadThresholdsURL();">Get</button>
                                       </div>
+                                  </div>
+                              </div>
+                            </div>
+                            <!-- beginning of modle for CSV File -->
+                            <div class="modal fade" id="ThresholdsCSV" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel" style="color: black">Get Thresholds via CSV file.</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                      <div class='input-group'>
+                                        <lable> Upload Thresholds from CSV file : </label><input type="file" id="fileThresholds" name="files[]" />
+                                      </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <div class='input-group'>
+                                        <div id="cover_drop_zone">
+                                          <div id="drop_Thresholds" class="drop_zone">Or drop CSV file here</div>
+                                        </div>
+                                      </div>
+                                    </div>
                                   </div>
                               </div>
                             </div>
@@ -405,7 +451,6 @@
       var Summarize = "Summarize";
       var Overview = "Overview";
       function reset(id) {
-        console.log('aaa');
         if(id == "Overview") {
           $('#container' + id).highcharts({
             chart: {
@@ -869,6 +914,8 @@
         });
         // allow all pages.
         stateAllow = 6;
+        $('#tab5').attr("data-toggle", "tab");
+        $('#tab6').attr("data-toggle", "tab");
       }
 
       // running via main process.
@@ -934,9 +981,144 @@
           }
         });
       }
+      // reading file Exposures
+      function handleFileExposures(evt) {
+        var files = document.getElementById('fileExposures').files;
+        if (!files.length) {
+          alert('Please select a file!');
+          return;
+        }
+        readExposures(files[0]);
+      }
+
+      document.getElementById('fileExposures').addEventListener('change', handleFileExposures, false);
+
+      function handleFileExposures2(evt) {
+        evt.stopPropagation();
+        evt.preventDefault();
+        var files = evt.dataTransfer.files; // FileList object.
+        if (!files.length) {
+          alert('Please select a file!');
+          return;
+        }
+        readExposures(files[0]);
+      }
+
+      function handleDragOver(evt) {
+        evt.stopPropagation();
+        evt.preventDefault();
+        evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+      }
+
+      function readExposures(file) {
+
+        var start = 0;
+        var stop = file.size - 1;
+
+        var reader = new FileReader();
+
+        // If we use onloadend, we need to check the readyState.
+        reader.onloadend = function(evt) {
+          if (evt.target.readyState == FileReader.DONE) { // DONE == 2
+            var result = evt.target.result + "";
+            var rows = result.split('\n');
+            try {
+              for(var i = 0; i < bankCount; i++) {
+                var lists = rows[i].split(',');
+                for(var j = 0; j < bankCount; j++) {
+                  var num = parseFloat(lists[j]);
+                  exposures[i][j] = num;
+                  // adding value.
+                  $( "#expo-"+i+"-"+j ).val(num);
+                }
+              }
+            }
+            catch(e) {
+              alert('Error Input Exposures : '+ e);
+            }
+          }
+        };
+
+        var blob = file.slice(start, stop + 1);
+        reader.readAsBinaryString(blob);
+
+        // triger modal to hide.
+        $('#ExposuresCSV').modal('hide');
+      }
+
+      // Setup the dnd listeners.
+      var dropZone = document.getElementById('drop_Exposures');
+      dropZone.addEventListener('dragover', handleDragOver, false);
+      dropZone.addEventListener('drop', handleFileExposures2, false);
+
+
+      // reading file Thresholds
+      function handleFileThresholds(evt) {
+        var files = document.getElementById('fileThresholds').files;
+        if (!files.length) {
+          alert('Please select a file!');
+          return;
+        }
+        readThresholds(files[0]);
+      }
+      document.getElementById('fileThresholds').addEventListener('change', handleFileThresholds, false);
+
+      function handleFileThresholds2(evt) {
+        evt.stopPropagation();
+        evt.preventDefault();
+        var files = evt.dataTransfer.files; // FileList object.
+        if (!files.length) {
+          alert('Please select a file!');
+          return;
+        }
+        readThresholds(files[0]);
+      }
+
+      function readThresholds(file) {
+
+        var start = 0;
+        var stop = file.size - 1;
+
+        var reader = new FileReader();
+
+        // If we use onloadend, we need to check the readyState.
+        reader.onloadend = function(evt) {
+          if (evt.target.readyState == FileReader.DONE) { // DONE == 2
+            var lists = evt.target.result.split(",");
+            try {
+              for(var i = 0; i < bankCount; ++i) {
+                thresholds[i] = parseFloat(lists[i]);
+                $( "#thresholds" + i ).val(thresholds[i]);
+              }
+            }
+            catch(e) {
+              alert('Error Input Thresholds : '+ e);
+            }
+          }
+        };
+
+        var blob = file.slice(start, stop + 1);
+        reader.readAsBinaryString(blob);
+
+        // triger modal to hide.
+        $('#ThresholdsCSV').modal('hide');
+        // need to update at least Thresholds
+        stateAllow = 3;
+      }
+
+      // Setup the dnd listeners.
+      var dropZoneThresholds = document.getElementById('drop_Thresholds');
+      dropZoneThresholds.addEventListener('dragover', handleDragOver, false);
+      dropZoneThresholds.addEventListener('drop', handleFileThresholds2, false);
+      
+      // setup all tab empty.
+      $('#tab2').attr("data-toggle", "");
+      $('#tab3').attr("data-toggle", "");
+      $('#tab4').attr("data-toggle", "");
+      $('#tab5').attr("data-toggle", "");
+      $('#tab6').attr("data-toggle", "");
 
       function test(){
-        console.log('This function has been called.');
       }
     </script>
   </body>

@@ -224,14 +224,40 @@
                                 </a>
                             </div>
                             <div class="btn-group pull-right">
-                                <a class="btn btn-default btn-sm" data-toggle="tooltip" title="Upload Exposures" onclick="">
-                                  <i class="fa fa-upload"></i>
-                                </a>
+                              <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#ExposuresCSV" title="Upload Exposures via CSV file.">
+                                <i class="fa fa-upload"></i>
+                              </a>
+                            </div>
+                            <div class="btn-group pull-right">
+                              <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#ExposuresJson" title="Upload Exposures via Json.">
+                                <i class="fa fa-upload"></i>
+                              </a>
                             </div>
                           </div>
                           <div class="box-body collapse in" id="this-insert-body-3">    
                             <div class="form-group" id="exposures">
                             </div>
+                          </div>
+                        </div>
+                        <!-- beginning of modle for Json -->
+                        <div class="modal fade" id="ExposuresJson" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                      <h4 class="modal-title" id="myModalLabel" style="color: black">Get Exposures via URL</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                    <div class='input-group'>
+                                      <span class='input-group-addon' disabled>URL</span>
+                                      <input type='text' class='form-control' id='ExposuresURL' placeholder='Please insert URL' value='http://chai41104.github.io/exampleInput'>
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                      <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="uploadExposuresURL();">Get</button>
+                                  </div>
+                              </div>
                           </div>
                         </div>
                         <div class="box box-solid">
@@ -268,7 +294,7 @@
                                       <div class="modal-body">
                                         <div class='input-group'>
                                           <span class='input-group-addon' disabled>URL</span>
-                                          <input type='text' class='form-control' id='ThresholdsURL' placeholder='Please insert URL' value='https://github.com/chai41104/SystemicRisk/blob/master/exampleInput'>
+                                          <input type='text' class='form-control' id='ThresholdsURL' placeholder='Please insert URL' value='http://chai41104.github.io/exampleInput'>
                                         </div>
                                       </div>
                                       <div class="modal-footer">
@@ -856,9 +882,56 @@
       //upload Thresholds via URL.
       function uploadThresholdsURL() {
         var url = $('#ThresholdsURL').val();
-        console.log(url);
+        // get data from url
         $.get( url, function( data ) {
-          console.log(data);
+          try {
+            var obj = $.parseJSON(data);
+            thresholds = obj.thresholds;
+            // check input.
+            if(bankCount != thresholds.length) {
+              throw "The length of input is not match with the number of bank.";
+            }
+
+            for(var i = 0; i < bankCount; ++i) {
+              // random a real (2 digits) between 10 and 20.
+              var num = thresholds[i];
+              // adding value.
+              $( "#thresholds" + i ).val(num);
+            }
+            // need to update at least Thresholds
+            stateAllow = 3;
+          }
+          catch(e) {
+            alert('Error Input Thresholds : '+ e);
+          }
+        });
+      }
+
+      //upload Exposures via URL.
+      function uploadExposuresURL() {
+        var url = $('#ExposuresURL').val();
+        // get data from url
+        $.get( url, function( data ) {
+          try {
+            var obj = $.parseJSON(data);
+            exposures = obj.exposures;
+            // check input.
+            if(bankCount != exposures[0].length) {
+              throw "The length of input is not match with the number of bank.";
+            }
+
+            for(var i = 0; i < bankCount; i++) {
+              for(var j = 0; j < bankCount; j++) {
+                // random a real (2 digits) between 10 and 20.
+                var num = exposures[i][j];
+                // adding value.
+                $( "#expo-"+i+"-"+j ).val(num);
+              }
+            }
+          }
+          catch(e) {
+            alert('Error Input Exposures : '+ e);
+          }
         });
       }
 

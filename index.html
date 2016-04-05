@@ -1,1 +1,870 @@
-"Hello World" 
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>System Risk</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="Content/bootstrap.min.css">
+    <!-- step -->
+    <link rel="stylesheet" href="Content/step.css"></link>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="Content/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="Content/_all-skins.min.css">
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link rel="stylesheet" href="Content/bootstrap3-wysihtml5.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+
+      <header class="main-header">
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+          <!-- mini logo for sidebar mini 50x50 pixels -->
+          <span class="logo-mini"><b>S</b>R</span>
+          <!-- logo for regular state and mobile devices -->
+          <span class="logo-lg"><b>System</b>Risk</span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a>
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <!-- Control Sidebar Toggle Button -->
+                <li>
+                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+          <ul class="sidebar-menu">
+            <li class="active treeview">
+              <a href="#">
+                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+              </a>
+            </li>
+          </ul>
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        
+        <!-- Main content -->
+        <section class="content connectedSortable ui-sortable">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="box box-solid">
+                <div class="box-body">
+                  <div id="rootwizard">
+                    <div class="navbar">
+                      <div class="navbar-inner">
+                        <div class="container">
+                          <ul>
+                            <li><a href="#tabInsertBanks" onclick="test();" data-toggle="tab">Insert Banks</a></li>
+                            <li><a href="#tabFailed" onclick="test();" data-toggle="tab">Insert Failed</a></li>
+                            <li><a href="#tabInsertETBanks" onclick="test();" data-toggle="tab">Insert Exposures & Thresholds of banks</a></li>
+                            <li><a href="#tabProcessing" onclick="test();" data-toggle="tab">Processing</a></li>
+                            <li><a href="#tabResult" onclick="test();" data-toggle="tab">Result</a></li>
+                            <li><a href="#tabSummarize" onclick="test();" data-toggle="tab">Summarize</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="bar" class="progress progress-striped active">
+                      <div class="bar progress-bar progress-bar-striped ">Your progress</div>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane" id="tabSummarize">
+                          <!--
+                          <div class="box box-solid" id="this-graph-1">
+                            <div class="box-header">
+                                <h3 class="box-title">Round One</h3>
+                                <div class="btn-group pull-right">
+                                    <a href="#" class="btn btn-default btn-sm" data-toggle="dropdown" data-placement="left" title="Theme" aria-expanded="false">
+                                        <i class="fa fa-wrench"></i>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#" onclick="GridLight()" style="color:black;">Grid-Light</a></li>
+                                        <li><a href="#" onclick="SandSignika()" style="color:black;">Sand-Signika</a></li>
+                                        <li><a href="#" onclick="DarkTheme()" style="color:black;">Dark-Theme</a></li>
+                                    </ul>
+                                    <a class="btn btn-default btn-sm" onclick="change(this)" data-toggle="collapse" data-target="#this-graph-body-1">
+                                      <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="left" title="hide" data-target="#this-graph-1" data-dismiss="alert">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="box-body collapse in" id="this-graph-body-1">    
+                              <div id="container"></div>
+                            </div>
+                          </div>
+                          -->
+                        </div>
+                        <div class="tab-pane" id="tabResult">
+                          <!--
+                          <div class="box box-solid" id="this-graph-1">
+                            <div class="box-header">
+                                <h3 class="box-title">Round One</h3>
+                                <div class="btn-group pull-right">
+                                    <a href="#" class="btn btn-default btn-sm" data-toggle="dropdown" data-placement="left" title="Theme" aria-expanded="false">
+                                        <i class="fa fa-wrench"></i>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#" onclick="GridLight()" style="color:black;">Grid-Light</a></li>
+                                        <li><a href="#" onclick="SandSignika()" style="color:black;">Sand-Signika</a></li>
+                                        <li><a href="#" onclick="DarkTheme()" style="color:black;">Dark-Theme</a></li>
+                                    </ul>
+                                    <a class="btn btn-default btn-sm" onclick="change(this)" data-toggle="collapse" data-target="#this-graph-body-1">
+                                      <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="left" title="hide" data-target="#this-graph-1" data-dismiss="alert">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="box-body collapse in" id="this-graph-body-1">    
+                              <div id="container"></div>
+                            </div>
+                          </div>
+                          -->
+                        </div>
+                        
+                      <div class="tab-pane" id="tabProcessing">
+                        <div class="callout callout-info" id="show-waiting">
+                          <h4><i align="center" class="fa fa-spinner fa-pulse"></i> All Cherts are processing</h4>
+                          <p>Please wait our system to processing cherts before continues.</p>
+                        </div>
+                        <div class="callout callout-success hidden" id="show-success">
+                          <h4> Plese click continues to see your results</h4>
+                          <p>We have done processing. Please click next to get your results.</p>
+                        </div>
+                      </div>
+                      <div class="tab-pane" id="tabInsertBanks">
+                        <div class="box box-solid">
+                          <div class="box-header">
+                            <h3 class="box-title">Please Answer All Questions</h3>
+                            <div class="btn-group pull-right">
+                                <a class="btn btn-default btn-sm" onclick="change(this)" data-toggle="collapse" data-target="#this-insert-body-1">
+                                  <i class="fa fa-chevron-up"></i>
+                                </a>
+                            </div>
+                          </div>
+                          <div class="box-body collapse in" id="this-insert-body-1">    
+                            <div class="form-group">
+                              <label for="sel1">How many companies do you like to calculate (maximum : 8 for this beta version)?</label>
+                              <select class="form-control" id="numsel">
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                              </select>
+                            </div>
+                            <div id="nameBanks">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tab-pane" id="tabFailed">
+                        <div class="box box-solid">
+                          <div class="box-header">
+                            <h3 class="box-title">Please Indicate that which banks are failed. (Hold shift to select more than one) </h3>
+                            <div class="btn-group pull-right">
+                                <a class="btn btn-default btn-sm" onclick="change(this)" data-toggle="collapse" data-target="#this-insert-body-2">
+                                  <i class="fa fa-chevron-up"></i>
+                                </a>
+                            </div>
+                          </div>
+                          <div class="box-body collapse in" id="this-insert-body-2">    
+                            <div class="form-group" id="failedBanks">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tab-pane" id="tabInsertETBanks">
+                        <div class="box box-solid">
+                          <div class="box-header">
+                            <h3 class="box-title">Please Insert Exposures of Banks</h3>
+                            <div class="btn-group pull-right">
+                                <a class="btn btn-default btn-sm" onclick="change(this)" data-toggle="collapse" data-target="#this-insert-body-3">
+                                  <i class="fa fa-chevron-up"></i>
+                                </a>
+                            </div>
+                            <div class="btn-group pull-right">
+                                <a class="btn btn-default btn-sm" data-toggle="tooltip" title="Random Exposures" onclick="randomExposures();">
+                                  <i class="fa fa-random"></i>
+                                </a>
+                            </div>
+                            <div class="btn-group pull-right">
+                                <a class="btn btn-default btn-sm" data-toggle="tooltip" title="Upload Exposures" onclick="">
+                                  <i class="fa fa-upload"></i>
+                                </a>
+                            </div>
+                          </div>
+                          <div class="box-body collapse in" id="this-insert-body-3">    
+                            <div class="form-group" id="exposures">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="box box-solid">
+                          <div class="box-header">
+                            <h3 class="box-title">Please Insert Thresholds of Banks</h3>
+                            <div class="btn-group pull-right">
+                              <a class="btn btn-default btn-sm" onclick="change(this)" data-toggle="collapse" data-target="#this-insert-body-4">
+                                <i class="fa fa-chevron-up"></i>
+                              </a>
+                            </div>
+                            <div class="btn-group pull-right">
+                              <a class="btn btn-default btn-sm" data-toggle="tooltip" title="Random Thresholds" onclick="randomThresholds();">
+                                <i class="fa fa-random"></i>
+                              </a>
+                            </div>
+                            <div class="btn-group pull-right">
+                              <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#ThresholdsCSV" title="Upload Thresholds via CSV file.">
+                                <i class="fa fa-upload"></i>
+                              </a>
+                            </div>
+                            <div class="btn-group pull-right">
+                              <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#ThresholdsJson" title="Upload Thresholds via Json.">
+                                <i class="fa fa-upload"></i>
+                              </a>
+                            </div>
+                            <!-- beginning of modle for Json -->
+                            <div class="modal fade" id="ThresholdsJson" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                  <div class="modal-content">
+                                      <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                          <h4 class="modal-title" id="myModalLabel" style="color: black">Get Thresholds via URL</h4>
+                                      </div>
+                                      <div class="modal-body">
+                                        <div class='input-group'>
+                                          <span class='input-group-addon' disabled>URL</span>
+                                          <input type='text' class='form-control' id='ThresholdsURL' placeholder='Please insert URL' value='https://github.com/chai41104/SystemicRisk/blob/master/exampleInput'>
+                                        </div>
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                          <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="uploadThresholdsURL();">Get</button>
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="box-body collapse in" id="this-insert-body-4">    
+                            <div id="thresholdsBanks">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <ul class="pager wizard">
+                        <li class="previous first"><a href="#">First</a></li>
+                        <li class="previous"><a href="#">Previous</a></li>
+                        <li class="next"><a href="#">Next</a></li>
+                      </ul>
+                    </div>  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section><!-- /.content -->
+      
+      </div><!-- /.content-wrapper -->
+
+      <!-- Control Sidebar -->
+      <aside class="control-sidebar control-sidebar-dark">
+          <!-- Create the tabs -->
+          <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+          </ul>
+          <!-- Tab panes -->
+          <div class="tab-content">
+              <!-- Home tab content -->
+              <div class="tab-pane" id="control-sidebar-home-tab">
+              </div><!-- /.tab-pane -->
+          </div>
+      </aside><!-- /.control-sidebar -->
+    </div><!-- ./wrapper -->
+
+    <!-- jQuery 2.1.4 -->
+    <script src="Script/jQuery-2.1.4.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="Script/jquery-ui.min.js"></script>
+    <!-- step -->
+    <script src="Script/step.js"></script>
+    <!-- prettify -->
+    <script src="Script/prettify.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="Script/bootstrap.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="Script/app.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="Script/demo.js"></script>
+    <!-- System Risk Calculation -->
+    <script src="Script/SystemRisk.js"></script>
+    <script>
+      //<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+      $.widget.bridge('uibutton', $.ui.button);
+
+      $(document).ready(function() {
+        $('#rootwizard').bootstrapWizard({
+          onTabShow: function(tab, navigation, index) {
+            var $total = navigation.find('li').length;
+            var $current = index+1;
+            var $percent = ($current/$total) * 100;
+            $('#rootwizard').find('.bar').css({width:$percent+'%'});
+        }});
+      });
+
+      function change(el){
+        var elc = el.children;
+        if(elc[0].className == "fa fa-chevron-down") {
+            elc[0].className = "fa fa-chevron-up";
+
+        }
+        else {
+            elc[0].className = "fa fa-chevron-down";
+        }
+      }
+      function addGraph(mainEle, id) {
+        var newEle = '<div class="box box-solid" id="this-graph-'+id+'"><div class="box-header">'
+                    +'<h3 class="box-title">Round '+id+'</h3><div class="btn-group pull-right">'
+                    +'<a href="#" class="btn btn-default btn-sm" data-toggle="dropdown" data-placement="left" title="Theme" aria-expanded="false"><i class="fa fa-wrench"></i></a>'
+                    +'<ul class="dropdown-menu"><li><a href="#" onclick="GridLight('+id+')" style="color:black;">Grid-Light</a></li>'
+                    +'<li><a href="#" onclick="SandSignika('+id+')" style="color:black;">Sand-Signika</a></li>'
+                    +'<li><a href="#" onclick="DarkTheme('+id+')" style="color:black;">Dark-Theme</a></li>'
+                    +'</ul><a class="btn btn-default btn-sm" onclick="change(this)" data-toggle="collapse" data-target="#this-graph-body-'+id+'">'
+                    +'<i class="fa fa-chevron-up"></i></a>'
+                    +'<a href="#" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="left" title="hide" data-target="#this-graph-'+id+'" data-dismiss="alert">'
+                    +'<i class="fa fa-times"></i></a></div></div>'
+                    +'<div class="box-body collapse in" id="this-graph-body-'+id+'"><div id="container'+id+'"></div></div></div>';
+        $('#' + mainEle).append(newEle);
+      }
+      var lossMoney;
+      var remainMoney;
+      var failedState;
+      var remainState;
+      var recordTotalLoss = [];
+      var recordRemains = [];
+      var labelOverview = [];
+      // defining the word.
+      var Summarize = "Summarize";
+      var Overview = "Overview";
+      function reset(id) {
+        console.log('aaa');
+        if(id == "Overview") {
+          $('#container' + id).highcharts({
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: 'Total Loss and Remaining fund in all banks'
+            },
+            xAxis: {
+                categories: labelOverview
+            },
+            yAxis: {
+                  allowDecimals: true,
+                  title: {
+                      text: 'Money (£ Million)'
+                  }
+            },
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true
+                    },
+                    enableMouseTracking: false
+                }
+            },
+            series: [{
+                name: 'Total Loss',
+                data: recordTotalLoss
+            }, {
+                name: 'Total Remain',
+                data: recordRemains
+            }]
+          });
+        }
+        else {
+          $('#container' + id).highcharts({
+              chart: {
+                  type: 'column',
+                  options3d: {
+                      enabled: true,
+                      alpha: 15,
+                      beta: 15,
+                      viewDistance: 25,
+                      depth: 40
+                  }
+              },
+
+              title: {
+                  text: 'Total loss in this scenario'
+              },
+
+              xAxis: {
+                  categories: banksName
+              },
+
+              yAxis: {
+                  allowDecimals: true,
+                  title: {
+                      text: 'Money (£ Million)'
+                  }
+              },
+
+              tooltip: {
+                  headerFormat: '<b>{point.key}</b><br>',
+                  pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y}'
+              },
+
+              plotOptions: {
+                  column: {
+                      stacking: 'normal',
+                      depth: 40
+                  }
+              },
+
+              series: [
+              {
+                  name: 'Difference (Loss - Thresholds)',
+                  data: remainMoney,
+                  stack: 'Loss'
+              }, {
+                  name: 'Loss',
+                  data: lossMoney,
+                  stack: 'Loss'
+              }, {
+                  name: 'Remain',
+                  data: remainState,
+                  stack: 'Failed'
+              }, {
+                  name: 'Failed',
+                  data: failedState,
+                  stack: 'Failed'
+              }]
+          });
+        }        
+      }
+      function generateChert(failedIndicator, thresholds, loss, id) {
+        lossMoney = [];
+        remainMoney = [];
+        failedState = [];
+        remainState = [];
+        var count = 0.0;
+        var countloss = 0.0;
+        var countremain = 0.0;
+        for(var i = 0; i < failedIndicator.length; ++i) {
+          // if bank doesn't failed.
+          if(failedIndicator[i] < 1.0) {
+            count += 1.0;
+            failedState.push(0.0);
+            remainState.push(1.0);
+
+            // Don't know yet. Assuming that the loss is 0.
+            if(loss == undefined) {
+              lossMoney.push(0.0);
+              remainMoney.push(thresholds[i]);
+              countremain += thresholds[i];
+            }
+            // knowing loss.
+            else {
+              lossMoney.push(loss[i]);
+              countloss += loss[i];
+              remainMoney.push(thresholds[i]-loss[i]);
+              countremain += thresholds[i]-loss[i];
+            }
+          } 
+          // bank did failed.
+          else {
+            failedState.push(1.0);
+            remainState.push(0.0);
+
+            // Don't know yet. Assuming that the loss is the threshold.
+            if(loss == undefined) {
+              lossMoney.push(thresholds[i]);
+              countloss += thresholds[i];
+              remainMoney.push(0.0);
+            }
+            // knowing loss. then, adding the highest one.
+            else {
+              var lost = (loss[i] >= thresholds[i]? loss[i]: thresholds[i]);
+              countloss += lost;
+              lossMoney.push(lost);
+              remainMoney.push(thresholds[i]-lost);
+              countremain += thresholds[i]-lost;
+            }
+          }
+        }
+        // adding how many banks are servired.
+        remainState.push(count);
+        // adding how many banks are failed.
+        failedState.push(failedIndicator.length - count);
+        // adding all loss.
+        lossMoney.push(countloss);
+        // record total loss in each round.
+        recordTotalLoss.push(countloss);
+        // record total thresholds in each round.
+        recordRemains.push(countremain);
+        // record label in each round.
+        labelOverview.push("Round " + id);
+        // adding all loss.
+        remainMoney.push(countremain);
+        // adding a chert to html tag.
+        addGraph("tabResult", id);
+        // adding data to the cherts
+        reset(id);
+      }
+      /*
+      $(function () {
+
+        // This function is the main function of all calculation.
+        function mainCalculation1(failedNow) {
+          var failedIndicator;
+          var loss;
+          var failed;
+          for(var round = 1; round == 1 || failedMore(failedIndicator, failedNow); round ++) {
+            // At the beginning, setting that failedIndicator is failedNow.
+            failedIndicator = failedNow;
+            // Using Jquery to generate cherts in each round.
+            generateChert(failedIndicator, thresholds, loss, round);
+            // Calculates what banks will fail.
+            loss = failurePropagation(failedIndicator, exposures);
+            // Calculates what companies will fail.
+            failed = PWComparison(thresholds, loss);
+            // merging the new result and old result together.
+            failedNow = PWOr(failed, failedIndicator);
+          }
+        }
+        // Predicting calculations.
+        mainCalculation1([0.0, 1.0, 0.0, 1.0]);
+        // adding a chert to html tag for summarize part.
+        addGraph("tabSummarize", "Summarize");
+        // adding data to the cherts
+        reset("Summarize");
+        // adding a chert to html tag for summarize part.
+        addGraph("tabSummarize", "Overview");
+        // adding data to the cherts
+        reset("Overview");
+        // Updating Color of each box.
+        updateBox();
+      });
+      */
+    </script>
+
+    <!-- Highcharts -->
+    <script src="Script/highcharts.js"></script>
+    <script src="Script/highcharts-3d.js"></script>
+    <script src="Script/exporting.js"></script>
+    <!-- Highcharts theme -->
+    <script src="Script/grid-light.js"></script>
+    <script src="Script/sand-signika.js"></script>
+    <script src="Script/dark-unica.js"></script>
+    
+    <script type="text/javascript">
+      function updateBox() {
+        var cls = get('skin');
+        $(".box-solid").each(function() {
+          var obj = $(this);
+          obj.removeClass('box-default');
+          obj.removeClass('box-purple');
+          obj.removeClass('box-primary');
+          obj.removeClass('box-success');
+          obj.removeClass('box-warning');
+          obj.removeClass('box-danger');
+          if(cls == 'skin-black-light' || cls == 'skin-black') {
+            obj.addClass('box-default');
+          }
+          else if(cls == 'skin-purple-light' || cls == 'skin-purple') {
+            obj.addClass('box-purple');
+          }
+          else if(cls == 'skin-blue-light' || cls == 'skin-blue') {
+            obj.addClass('box-primary');
+          }
+          else if(cls == 'skin-green-light' || cls == 'skin-green') {
+            obj.addClass('box-success');
+          }
+          else if(cls == 'skin-yellow-light' || cls == 'skin-yellow') {
+            obj.addClass('box-warning');
+          }
+          else if(cls == 'skin-red-light' || cls == 'skin-red') {
+            obj.addClass('box-danger');
+          }
+        });
+      }
+      /**
+       * Get a prestored setting
+       *
+       * @param String name Name of of the setting
+       * @returns String The value of the setting | null
+       */
+      function get(name) {
+        if (typeof (Storage) !== "undefined") {
+          return localStorage.getItem(name);
+        } else {
+          window.alert('Please use a modern browser to properly view this template!');
+        }
+      }
+
+      var suggestionBanksList = ['HSBC', 'Lloyds Banking Group', 'Royal Bank of Scotland Group', 'Barclays', 'Standard Chartered', 'Co-operative Bank', 'Harrods Bank', 'Tesco Bank'];
+
+      // dealing with input 1 that how many companies do you like to calculate.
+      $( "#numsel" ).change(function() {
+        $( "#nameBanks" ).empty();
+        bankCount = $( "#numsel" ).val();
+        for(var i = 0; i < bankCount; ++i) {
+          $( "#nameBanks" ).append("<div class='input-group'><span class='input-group-addon' disabled>Bank Name:</span><input type='text' class='form-control' id='bankname"+i+"' placeholder='Please insert banks name' value='"+suggestionBanksList[i]+"'></div><br/>");
+        }
+        // Set upto 2.
+        stateAllow = 2;
+      });
+      
+      // How many banks in ours calculation?
+      var bankCount = 4;
+      var banksName = ['HSBC', 'Lloyds Banking Group', 'Royal Bank of Scotland Group', 'Barclays'];
+      
+      // Calling only once when we know how many banks.
+      function setupBanksDetails() {
+        banksName = [];
+        $( "#failedBanks" ).empty();
+        $( "#thresholdsBanks" ).empty();
+
+        var failedHtml = '<select multiple class="form-control" id="selfailed2">';
+        for(var i = 0; i < bankCount; ++i) {
+          var name = $( "#bankname"+i ).val();
+          banksName.push(name);
+          failedHtml += '<option>'+name+'</option>';
+          $( "#thresholdsBanks" ).append("<div class='input-group'><span class='input-group-addon' disabled>"+name+" (Million pound):</span><input type='number' class='form-control' value='0.0' id='thresholds"+i+"' min='0' data-bind='value:replyNumber' /></div><br/>");
+        }
+        failedHtml += '</select>';
+        $( "#failedBanks" ).append(failedHtml);
+        $( "#selfailed2" ).val([banksName[0]]);
+        generateMatrix(bankCount);
+
+        banksName.push('All banks');
+        // reset the announcement.
+        $('#show-waiting').removeClass('hidden');
+        $('#show-success').addClass('hidden');
+
+        // remove all chert data.
+        labelOverview = [];
+        recordTotalLoss = [];
+        recordRemains = [];
+
+        // remove all graph.
+        $('#tabResult').empty();
+        $('#tabSummarize').empty(); 
+      }
+
+      // get all Failed bansk from what the user pick.
+      function getFailedBanks() {
+        var lists = $( "#selfailed2" ).val();
+        // reset it.
+        failedInitiate = [];
+        for(var i = 0; i < bankCount; ++i) {
+          failedInitiate.push(0.0);
+        }
+        for(var i = 0; i < lists.length; ++i) {
+          // Simple searching the name of each failed bank.
+          for(var j = 0; j < bankCount; ++j) {
+            // If it's found, label as a failed bank. 
+            if(lists[i] == banksName[j]) {
+              failedInitiate[j] = 1.0;
+              break;
+            }
+          }
+        }
+      }
+
+      // random thresholds of all banks
+      function randomThresholds() {
+        for(var i = 0; i < bankCount; ++i) {
+          // random a real (2 digits) between 10 and 20.
+          var num = (parseInt(Math.random() * 1000) + 1000) / 100.0;
+          // adding value.
+          $( "#thresholds" + i ).val(num);
+        }
+        // need to update at least Thresholds
+        stateAllow = 3;
+      }
+
+      // random exposures of all banks
+      function randomExposures() {
+        for(var i = 0; i < bankCount; i++) {
+          for(var j = 0; j < bankCount; j++) {
+            if(i != j) {     
+              // random a real (2 digits) between 10 and 20.
+              var num = (parseInt(Math.random() * 1000) + 1000) / 100.0;
+              // adding value.
+              $( "#expo-"+i+"-"+j ).val(num);
+            }
+          }
+        }
+      }
+
+      // get exposures of all banks
+      function getExposures() {
+        // reset value;
+        exposures = [];
+        for(var i = 0; i < bankCount; i++) {
+          var row = [];
+          for(var j = 0; j < bankCount; j++) {
+            if(i != j) {     
+              // pushing value.
+              row.push(parseFloat($( "#expo-"+i+"-"+j ).val()));
+            }
+            else {
+              // pushing zero value for the same banks, i == j.
+              row.push(0.0);
+            }
+          }
+          // pushing a row.
+          exposures.push(row);
+        }
+      }
+
+
+      // get thresholds of all banks
+      function getThresholds() {
+        thresholds = [];
+        for(var i = 0; i < bankCount; ++i) {
+          // pushing value.
+          thresholds.push(parseFloat($( "#thresholds" + i ).val()));
+        }
+      }
+
+      // generate initial matrix of exposures.
+      function generateMatrix() {
+        $('#exposures').empty();
+        for(var i = 0; i < bankCount; i++) {
+          $('#exposures').append("<div class='input-group'><span class='input-group-addon' disabled>How much money "+banksName[i]+" will loss:</span>");
+          for(var j = 0; j < bankCount; j++) {
+            if(i != j) {
+              $('#exposures').append('<div class="input-group"><span class="input-group-addon" disabled>If '+banksName[j]+' collapses (Million pound):</span><input type="number" class="form-control" min="0" data-bind="value:replyNumber" value="0.0" id="expo-'+i+'-'+j+'"/></div>');
+            }
+          }
+          var br = $('<br>')[0];
+          $('#exposures').append("</div>");
+        }
+      }
+
+      // initial state in the case that the user doesn't change anything.
+      function initialState() {
+        for(var i = 0; i < bankCount; ++i) {
+            $( "#nameBanks" ).append("<div class='input-group'><span class='input-group-addon' disabled>Bank Name:</span><input type='text' class='form-control' id='bankname"+i+"' placeholder='Please insert banks name' value='"+suggestionBanksList[i]+"'></div><br/>");
+        }
+      }
+      //thresholdsBanks
+      initialState();
+      
+      // allow how many tab for this user.
+      var stateAllow = 2;
+
+      // check the current tab.
+      function checkState(index) {
+        if(stateAllow >= index) {
+          return true;
+        }
+        else {
+          return false;
+        }
+      }
+
+      // This function is the main function of all calculation.
+      function mainCalculation1(failedNow) {
+        var failedIndicator;
+        var loss;
+        var failed;
+        for(var round = 1; round == 1 || failedMore(failedIndicator, failedNow); round ++) {
+          // At the beginning, setting that failedIndicator is failedNow.
+          failedIndicator = failedNow;
+          // Using Jquery to generate cherts in each round.
+          generateChert(failedIndicator, thresholds, loss, round);
+          // Calculates what banks will fail.
+          loss = failurePropagation(failedIndicator, exposures);
+          // Calculates what companies will fail.
+          failed = PWComparison(thresholds, loss);
+          // merging the new result and old result together.
+          failedNow = PWOr(failed, failedIndicator);
+        }
+      }
+
+      // Call when it was in processing page.
+      function doProcessing() {
+
+        // Predicting calculations.
+        mainCalculation1(failedInitiate);
+        // adding a chert to html tag for summarize part.
+        addGraph("tabSummarize", "Summarize");
+        // adding data to the cherts
+        reset("Summarize");
+        // adding a chert to html tag for summarize part.
+        addGraph("tabSummarize", "Overview");
+        // adding data to the cherts
+        reset("Overview");
+        // Updating Color of each box.
+        updateBox();
+        // change the announcement
+        $('#show-waiting').addClass('hidden');
+        $('#show-success').removeClass('hidden');
+        // do a bit of animation.
+        $('#show-success').animate({
+          opacity: 0.99,
+          }, 100, function() {
+        });
+        // allow all pages.
+        stateAllow = 6;
+      }
+
+      // running via main process.
+      function initiateProcessing() {
+        $('#show-waiting').animate({
+          opacity: 0.99,
+          }, 100, function() {
+            doProcessing();
+        });
+      }
+      //upload Thresholds via URL.
+      function uploadThresholdsURL() {
+        var url = $('#ThresholdsURL').val();
+        console.log(url);
+        $.get( url, function( data ) {
+          console.log(data);
+        });
+      }
+
+      function test(){
+        console.log('This function has been called.');
+      }
+    </script>
+  </body>
+</html>

@@ -106,60 +106,10 @@
                     </div>
                     <div class="tab-content">
                         <div class="tab-pane" id="tabSummarize">
-                          <!--
-                          <div class="box box-solid" id="this-graph-1">
-                            <div class="box-header">
-                                <h3 class="box-title">Round One</h3>
-                                <div class="btn-group pull-right">
-                                    <a href="#" class="btn btn-default btn-sm" data-toggle="dropdown" data-placement="left" title="Theme" aria-expanded="false">
-                                        <i class="fa fa-wrench"></i>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#" onclick="GridLight()" style="color:black;">Grid-Light</a></li>
-                                        <li><a href="#" onclick="SandSignika()" style="color:black;">Sand-Signika</a></li>
-                                        <li><a href="#" onclick="DarkTheme()" style="color:black;">Dark-Theme</a></li>
-                                    </ul>
-                                    <a class="btn btn-default btn-sm" onclick="change(this)" data-toggle="collapse" data-target="#this-graph-body-1">
-                                      <i class="fa fa-chevron-up"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="left" title="hide" data-target="#this-graph-1" data-dismiss="alert">
-                                        <i class="fa fa-times"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="box-body collapse in" id="this-graph-body-1">    
-                              <div id="container"></div>
-                            </div>
-                          </div>
-                          -->
+                          <!-- All charts will be generated here -->
                         </div>
                         <div class="tab-pane" id="tabResult">
-                          <!--
-                          <div class="box box-solid" id="this-graph-1">
-                            <div class="box-header">
-                                <h3 class="box-title">Round One</h3>
-                                <div class="btn-group pull-right">
-                                    <a href="#" class="btn btn-default btn-sm" data-toggle="dropdown" data-placement="left" title="Theme" aria-expanded="false">
-                                        <i class="fa fa-wrench"></i>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#" onclick="GridLight()" style="color:black;">Grid-Light</a></li>
-                                        <li><a href="#" onclick="SandSignika()" style="color:black;">Sand-Signika</a></li>
-                                        <li><a href="#" onclick="DarkTheme()" style="color:black;">Dark-Theme</a></li>
-                                    </ul>
-                                    <a class="btn btn-default btn-sm" onclick="change(this)" data-toggle="collapse" data-target="#this-graph-body-1">
-                                      <i class="fa fa-chevron-up"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="left" title="hide" data-target="#this-graph-1" data-dismiss="alert">
-                                        <i class="fa fa-times"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="box-body collapse in" id="this-graph-body-1">    
-                              <div id="container"></div>
-                            </div>
-                          </div>
-                          -->
+                          <!-- All charts will be generated here -->
                         </div>
                         
                       <div class="tab-pane" id="tabProcessing">
@@ -319,7 +269,7 @@
                                   <div class="modal-body">
                                     <div class='input-group'>
                                       <span class='input-group-addon' disabled>URL</span>
-                                      <input type='text' class='form-control' id='ExposuresURL' placeholder='Please insert URL' value='http://chai41104.github.io/exampleInputFor10'>
+                                      <input type='text' class='form-control' id='ExposuresURLValue' placeholder='Please insert URL' value='http://chai41104.github.io/exampleInputFor10'/>
                                     </div>
                                   </div>
                                   <div class="modal-footer">
@@ -388,7 +338,7 @@
                                       <div class="modal-body">
                                         <div class='input-group'>
                                           <span class='input-group-addon' disabled>URL</span>
-                                          <input type='text' class='form-control' id='ThresholdsURL' placeholder='Please insert URL' value='http://chai41104.github.io/exampleInputFor10'>
+                                          <input type='text' class='form-control' id='ThresholdsURLValue' placeholder='Please insert URL' value='http://chai41104.github.io/exampleInputFor10'>
                                         </div>
                                       </div>
                                       <div class="modal-footer">
@@ -1063,7 +1013,7 @@
       }
       //upload Thresholds via URL.
       function uploadThresholdsURL() {
-        var url = $('#ThresholdsURL').val();
+        var url = $('#ThresholdsURLValue').val();
         // get data from url
         $.get( url, function( data ) {
           try {
@@ -1117,12 +1067,15 @@
 
       //upload Exposures via URL.
       function uploadExposuresURL() {
-        var url = $('#ExposuresURL').val();
+        var url = $('#ExposuresURLValue').val();
+        console.log(url);
         // get data from url
         $.get( url, function( data ) {
           try {
             var obj = $.parseJSON(data);
             exposures = obj.exposures;
+            console.log(bankCount);
+            console.log(exposures[0].length);
             // check input.
             if(bankCount != exposures[0].length) {
               throw "The length of input is not match with the number of bank.";

@@ -258,7 +258,7 @@
                                   <div class="modal-body">
                                     <div class='input-group'>
                                       <span class='input-group-addon' disabled>URL</span>
-                                      <input type='text' class='form-control' id='ExposuresURL' placeholder='Please insert URL' value='http://chai41104.github.io/exampleInputFor10'>
+                                      <input type='text' class='form-control' id='ExposuresURLValue' placeholder='Please insert URL' value='http://chai41104.github.io/exampleInputFor10'>
                                     </div>
                                   </div>
                                   <div class="modal-footer">
@@ -327,7 +327,7 @@
                                       <div class="modal-body">
                                         <div class='input-group'>
                                           <span class='input-group-addon' disabled>URL</span>
-                                          <input type='text' class='form-control' id='ThresholdsURL' placeholder='Please insert URL' value='http://chai41104.github.io/exampleInputFor10'>
+                                          <input type='text' class='form-control' id='ThresholdsURLValue' placeholder='Please insert URL' value='http://chai41104.github.io/exampleInputFor10'>
                                         </div>
                                       </div>
                                       <div class="modal-footer">
@@ -987,7 +987,7 @@
       }
       //upload Thresholds via URL.
       function uploadThresholdsURL() {
-        var url = $('#ThresholdsURL').val();
+        var url = $('#ThresholdsURLValue').val();
         // get data from url
         $.get( url, function( data ) {
           try {
@@ -1015,7 +1015,7 @@
 
       //upload Exposures via URL.
       function uploadExposuresURL() {
-        var url = $('#ExposuresURL').val();
+        var url = $('#ExposuresURLValue').val();
         // get data from url
         $.get( url, function( data ) {
           try {

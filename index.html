@@ -1068,14 +1068,11 @@
       //upload Exposures via URL.
       function uploadExposuresURL() {
         var url = $('#ExposuresURLValue').val();
-        console.log(url);
         // get data from url
         $.get( url, function( data ) {
           try {
             var obj = $.parseJSON(data);
             exposures = obj.exposures;
-            console.log(bankCount);
-            console.log(exposures[0].length);
             // check input.
             if(bankCount != exposures[0].length) {
               throw "The length of input is not match with the number of bank.";

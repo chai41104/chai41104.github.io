@@ -175,7 +175,7 @@
                       <div class="tab-pane" id="tabInsertBanks">
                         <div class="box box-solid">
                           <div class="box-header">
-                            <h3 class="box-title">Please Answer All Questions</h3>
+                            <h3 class="box-title">Please pick a number of companies and their names</h3>
                             <div class="btn-group pull-right">
                                 <a class="btn btn-default btn-sm" onclick="change(this)" data-toggle="collapse" data-target="#this-insert-body-1">
                                   <i class="fa fa-chevron-up"></i>
@@ -184,13 +184,15 @@
                           </div>
                           <div class="box-body collapse in" id="this-insert-body-1">    
                             <div class="form-group">
-                              <label for="sel1">How many companies do you like to calculate (maximum : 8 for this beta version)?</label>
+                              <label for="sel1">How many companies do you like to calculate (maximum : 10 for this beta version)?</label>
                               <select class="form-control" id="numsel">
                                 <option>4</option>
                                 <option>5</option>
                                 <option>6</option>
                                 <option>7</option>
                                 <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
                               </select>
                             </div>
                             <div id="nameBanks">
@@ -251,11 +253,12 @@
                                   <div class="modal-header">
                                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                       <h4 class="modal-title" id="myModalLabel" style="color: black">Get Exposures via URL</h4>
+                                      <label>The example link is for 10 companies input data.</label>
                                   </div>
                                   <div class="modal-body">
                                     <div class='input-group'>
                                       <span class='input-group-addon' disabled>URL</span>
-                                      <input type='text' class='form-control' id='ExposuresURL' placeholder='Please insert URL' value='http://chai41104.github.io/exampleInput'>
+                                      <input type='text' class='form-control' id='ExposuresURL' placeholder='Please insert URL' value='http://chai41104.github.io/exampleInputFor10'>
                                     </div>
                                   </div>
                                   <div class="modal-footer">
@@ -272,9 +275,10 @@
                                   <div class="modal-header">
                                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                       <h4 class="modal-title" id="myModalLabel" style="color: black">Get Exposures via CSV file.</h4>
+                                      <label style="color: black">The example file can be found at exposuresFor4.csv</label>
                                   </div>
                                   <div class="modal-body">
-                                    <div class='input-group'>
+                                    <div class='input-group' style="color: black">
                                       <lable> Upload CSV file : </label><input type="file" id="fileExposures" name="files[]" />
                                     </div>
                                   </div>
@@ -318,11 +322,12 @@
                                       <div class="modal-header">
                                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                           <h4 class="modal-title" id="myModalLabel" style="color: black">Get Thresholds via URL</h4>
+                                          <label style="color: black">The example link is for 10 companies input data.</label>
                                       </div>
                                       <div class="modal-body">
                                         <div class='input-group'>
                                           <span class='input-group-addon' disabled>URL</span>
-                                          <input type='text' class='form-control' id='ThresholdsURL' placeholder='Please insert URL' value='http://chai41104.github.io/exampleInput'>
+                                          <input type='text' class='form-control' id='ThresholdsURL' placeholder='Please insert URL' value='http://chai41104.github.io/exampleInputFor10'>
                                         </div>
                                       </div>
                                       <div class="modal-footer">
@@ -339,9 +344,10 @@
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                         <h4 class="modal-title" id="myModalLabel" style="color: black">Get Thresholds via CSV file.</h4>
+                                        <label style="color: black">The example file can be found at thresholdsFor4.csv</label>
                                     </div>
                                     <div class="modal-body">
-                                      <div class='input-group'>
+                                      <div class='input-group' style="color: black">
                                         <lable> Upload Thresholds from CSV file : </label><input type="file" id="fileThresholds" name="files[]" />
                                       </div>
                                     </div>
@@ -363,7 +369,7 @@
                         </div>
                       </div>
                       <ul class="pager wizard">
-                        <li class="previous first"><a href="#">First</a></li>
+                        <li class="previous first"><a href="#">Start again</a></li>
                         <li class="previous"><a href="#">Previous</a></li>
                         <li class="next"><a href="#">Next</a></li>
                       </ul>
@@ -462,7 +468,7 @@
                 type: 'line'
             },
             title: {
-                text: 'Total Loss and Remaining fund in all banks'
+                text: 'Total loss and remaining funds (threshold - loss) of all banks.'
             },
             xAxis: {
                 categories: labelOverview
@@ -472,6 +478,9 @@
                   title: {
                       text: 'Money (£ Million)'
                   }
+            },
+            tooltip: {
+              valueSuffix: '£ Million'
             },
             plotOptions: {
                 line: {
@@ -485,9 +494,69 @@
                 name: 'Total Loss',
                 data: recordTotalLoss
             }, {
-                name: 'Total Remain',
+                name: 'Cash Remain',
                 data: recordRemains
             }]
+          });
+        }
+        else if(id == "Summarize") {
+          $('#container' + id).highcharts({
+              chart: {
+                  type: 'column',
+                  options3d: {
+                      enabled: true,
+                      alpha: 15,
+                      beta: 15,
+                      viewDistance: 25,
+                      depth: 40
+                  }
+              },
+
+              title: {
+                  text: 'Total loss and remaining funds (threshold - loss) in this scenario'
+              },
+
+              xAxis: {
+                  categories: banksName
+              },
+
+              yAxis: {
+                  allowDecimals: true,
+                  title: {
+                      text: 'Money (£ Million)'
+                  }
+              },
+
+              tooltip: {
+                  headerFormat: '<b>{point.key}</b><br>',
+                  pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y}'
+              },
+
+              plotOptions: {
+                  column: {
+                      stacking: 'normal',
+                      depth: 40
+                  }
+              },
+
+              series: [
+              {
+                  name: 'Remaining fund (Loss - Threshold)',
+                  data: setRemainMoney[setRemainMoney.length - 1],
+                  stack: 'Loss'
+              }, {
+                  name: 'Loss',
+                  data: setLossMoney[setLossMoney.length - 1],
+                  stack: 'Loss'
+              }, {
+                  name: 'Remain',
+                  data: setRemainState[setRemainState.length - 1],
+                  stack: 'Failed'
+              }, {
+                  name: 'Failed',
+                  data: setFailedState[setFailedState.length - 1],
+                  stack: 'Failed'
+              }]
           });
         }
         else {
@@ -532,25 +601,30 @@
 
               series: [
               {
-                  name: 'Difference (Loss - Thresholds)',
-                  data: remainMoney,
+                  name: 'Remaining fund (Loss - Threshold)',
+                  data: setRemainMoney[id-1],
                   stack: 'Loss'
               }, {
                   name: 'Loss',
-                  data: lossMoney,
+                  data: setLossMoney[id-1],
                   stack: 'Loss'
               }, {
                   name: 'Remain',
-                  data: remainState,
+                  data: setRemainState[id-1],
                   stack: 'Failed'
               }, {
                   name: 'Failed',
-                  data: failedState,
+                  data: setFailedState[id-1],
                   stack: 'Failed'
               }]
           });
         }        
       }
+      var setLossMoney = [];
+      var setRemainMoney  = [];
+      var setFailedState = [];
+      var setRemainState = [];
+      
       function generateChert(failedIndicator, thresholds, loss, id) {
         lossMoney = [];
         remainMoney = [];
@@ -615,46 +689,16 @@
         labelOverview.push("Round " + id);
         // adding all loss.
         remainMoney.push(countremain);
+        // push all data into set.
+        setLossMoney.push(lossMoney);
+        setRemainMoney.push(remainMoney);
+        setFailedState.push(failedState);
+        setRemainState.push(remainState);
         // adding a chert to html tag.
         addGraph("tabResult", id);
         // adding data to the cherts
         reset(id);
       }
-      /*
-      $(function () {
-
-        // This function is the main function of all calculation.
-        function mainCalculation1(failedNow) {
-          var failedIndicator;
-          var loss;
-          var failed;
-          for(var round = 1; round == 1 || failedMore(failedIndicator, failedNow); round ++) {
-            // At the beginning, setting that failedIndicator is failedNow.
-            failedIndicator = failedNow;
-            // Using Jquery to generate cherts in each round.
-            generateChert(failedIndicator, thresholds, loss, round);
-            // Calculates what banks will fail.
-            loss = failurePropagation(failedIndicator, exposures);
-            // Calculates what companies will fail.
-            failed = PWComparison(thresholds, loss);
-            // merging the new result and old result together.
-            failedNow = PWOr(failed, failedIndicator);
-          }
-        }
-        // Predicting calculations.
-        mainCalculation1([0.0, 1.0, 0.0, 1.0]);
-        // adding a chert to html tag for summarize part.
-        addGraph("tabSummarize", "Summarize");
-        // adding data to the cherts
-        reset("Summarize");
-        // adding a chert to html tag for summarize part.
-        addGraph("tabSummarize", "Overview");
-        // adding data to the cherts
-        reset("Overview");
-        // Updating Color of each box.
-        updateBox();
-      });
-      */
     </script>
 
     <!-- Highcharts -->
@@ -710,8 +754,9 @@
           window.alert('Please use a modern browser to properly view this template!');
         }
       }
-
-      var suggestionBanksList = ['HSBC', 'Lloyds Banking Group', 'Royal Bank of Scotland Group', 'Barclays', 'Standard Chartered', 'Co-operative Bank', 'Harrods Bank', 'Tesco Bank'];
+      
+      // list of suggestion banks
+      var suggestionBanksList = ['HSBC', 'Lloyds Bank', 'Royal Bank of Scotland', 'Barclays', 'Standard Chartered', 'Co-operative Bank', 'Harrods Bank', 'Tesco Bank', 'Metro Bank', 'Citibank'];
 
       // dealing with input 1 that how many companies do you like to calculate.
       $( "#numsel" ).change(function() {
@@ -721,7 +766,7 @@
           $( "#nameBanks" ).append("<div class='input-group'><span class='input-group-addon' disabled>Bank Name:</span><input type='text' class='form-control' id='bankname"+i+"' placeholder='Please insert banks name' value='"+suggestionBanksList[i]+"'></div><br/>");
         }
         // Set upto 2.
-        stateAllow = 2;
+        stateAllow = 3;
       });
       
       // How many banks in ours calculation?
@@ -739,7 +784,7 @@
           var name = $( "#bankname"+i ).val();
           banksName.push(name);
           failedHtml += '<option>'+name+'</option>';
-          $( "#thresholdsBanks" ).append("<div class='input-group'><span class='input-group-addon' disabled>"+name+" (Million pound):</span><input type='number' class='form-control' value='0.0' id='thresholds"+i+"' min='0' data-bind='value:replyNumber' /></div><br/>");
+          $( "#thresholdsBanks" ).append("<div class='input-group'><span class='input-group-addon' disabled>"+name+" (£ Million):</span><input type='number' class='form-control' value='0.0' id='thresholds"+i+"' min='0' data-bind='value:replyNumber' /></div><br/>");
         }
         failedHtml += '</select>';
         $( "#failedBanks" ).append(failedHtml);
@@ -755,6 +800,10 @@
         labelOverview = [];
         recordTotalLoss = [];
         recordRemains = [];
+        setLossMoney = [];
+        setRemainMoney  = [];
+        setFailedState = [];
+        setRemainState = [];
 
         // remove all graph.
         $('#tabResult').empty();
@@ -798,8 +847,8 @@
         for(var i = 0; i < bankCount; i++) {
           for(var j = 0; j < bankCount; j++) {
             if(i != j) {     
-              // random a real (2 digits) between 10 and 20.
-              var num = (parseInt(Math.random() * 1000) + 1000) / 100.0;
+              // random a real (2 digits) between 0 and 20.
+              var num = (parseInt(Math.random() * 1000)) / 100.0;
               // adding value.
               $( "#expo-"+i+"-"+j ).val(num);
             }
@@ -842,10 +891,10 @@
       function generateMatrix() {
         $('#exposures').empty();
         for(var i = 0; i < bankCount; i++) {
-          $('#exposures').append("<div class='input-group'><span class='input-group-addon' disabled>How much money "+banksName[i]+" will loss:</span>");
+          $('#exposures').append("<div class='input-group'><span class='input-group-addon' disabled>How much money "+banksName[i]+" will lose:</span>");
           for(var j = 0; j < bankCount; j++) {
             if(i != j) {
-              $('#exposures').append('<div class="input-group"><span class="input-group-addon" disabled>If '+banksName[j]+' collapses (Million pound):</span><input type="number" class="form-control" min="0" data-bind="value:replyNumber" value="0.0" id="expo-'+i+'-'+j+'"/></div>');
+              $('#exposures').append('<div class="input-group"><span class="input-group-addon" disabled>If '+banksName[j]+' collapses (£ Million):</span><input type="number" class="form-control" min="0" data-bind="value:replyNumber" value="0.0" id="expo-'+i+'-'+j+'"/></div>');
             }
           }
           var br = $('<br>')[0];
@@ -863,7 +912,7 @@
       initialState();
       
       // allow how many tab for this user.
-      var stateAllow = 2;
+      var stateAllow = 3;
 
       // check the current tab.
       function checkState(index) {
@@ -899,6 +948,11 @@
 
         // Predicting calculations.
         mainCalculation1(failedInitiate);
+        // push all data into set for summarize graph.
+        setLossMoney.push(lossMoney);
+        setRemainMoney.push(remainMoney);
+        setFailedState.push(failedState);
+        setRemainState.push(remainState);
         // adding a chert to html tag for summarize part.
         addGraph("tabSummarize", "Summarize");
         // adding data to the cherts
@@ -1123,7 +1177,12 @@
       $('#tab5').attr("data-toggle", "");
       $('#tab6').attr("data-toggle", "");
 
-      function test(){
+      // do nothing function.
+      function test(id){
+      }
+      // create function for both cases.
+      function getValue(){
+        getFailedBanks();
       }
     </script>
   </body>

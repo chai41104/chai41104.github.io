@@ -71,7 +71,7 @@ var bootstrapWizardCreate = function(element, options) {
 			$('#tab6').attr("data-toggle", "");
 		}
 		else if($index == 2) {
-			getFailedBanks();
+			getValue();
 			$('#tab2').attr("data-toggle", "tab");
 			$('#tab3').attr("data-toggle", "tab");
 			$('#tab4').attr("data-toggle", "");
